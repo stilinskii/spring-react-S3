@@ -1,10 +1,12 @@
 package com.jenn.awsimageupload.datasource;
 
+import com.amazonaws.services.dynamodbv2.xspec.NULL;
 import com.jenn.awsimageupload.profile.UserProfile;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -19,5 +21,9 @@ public class FakeUserProfileDataStore {
 
     public List<UserProfile> getUserProfile(){
         return USER_PROFILE;
+    }
+
+    public UserProfile getUserById(UUID userProfileId){
+       return USER_PROFILE.stream().filter((userProfile -> userProfile.getUserProfileId().equals(userProfileId))).findAny().orElse(null);
     }
 }
