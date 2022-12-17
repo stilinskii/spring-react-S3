@@ -5,8 +5,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class UserProfile {
-    private UUID userProfileId;
-    private String username;
+
+
+    private final UUID userProfileId;
+    private final String username;
     private String userProfileImageLink; // S3 key
 
     public UserProfile(UUID userProfileId, String username, String userProfileImageLink) {
@@ -25,14 +27,6 @@ public class UserProfile {
 
     public Optional<String> getUserProfileImageLink() {
         return Optional.ofNullable(userProfileImageLink);
-    }
-
-    public void setUserProfileId(UUID userProfileId) {
-        this.userProfileId = userProfileId;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public void setUserProfileImageLink(String userProfileImageLink) {

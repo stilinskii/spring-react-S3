@@ -39,7 +39,10 @@ public class UserProfileController {
 
     }
 
-
+    @GetMapping("{userProfileId}/image/download")
+    public byte[] downloadUserProfileImage(@PathVariable("userProfileId") UUID userProfileId){
+        return userProfileService.downloadUserProfileImage(userProfileId);
+    }
 
 
 }
