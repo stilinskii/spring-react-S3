@@ -25,6 +25,7 @@ const UserProfiles = () => {
   return userProfiles.map((userProfile, index) => {
     return (
       <div key={index}>
+        <ProfileImage {...userProfile} />
         {userProfile.userProfileId ? (
           <img
             src={`http://localhost:8081/api/v1/user-profile/${userProfile.userProfileId}/image/download`}
@@ -42,6 +43,20 @@ const UserProfiles = () => {
     );
   });
 };
+
+function ProfileImage({ userProfileId }) {
+  const [userProfileImage, setUserProfileImage] = useState([]);
+  axios
+    .get(
+      `http://localhost:8081/api/v1/user-profile/${userProfileId}/image/download`
+    )
+    .then((res) => {
+      console.log(res.data);
+      setUserProfileImage(res.data);
+    });
+
+  return <img src={userProfileImage}></img>;
+}
 
 function Dropzone({ userProfileId }) {
   // console.log(username);

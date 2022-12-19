@@ -84,6 +84,16 @@ public class UserProfileService {
     }
 
 
+    public String getUserProfileImgUrl(UUID userProfileId){
+        UserProfile user = getUserProfileOrThrow(userProfileId);
+        String path = String.format("%s/%s",
+                PROFILE_IMAGE.getBucketName(),
+                user.getUserProfileId());
+        return user.getUserProfileImageLink()
+                .map(fileName -> fileStore.getImgUrl(path, fileName))
+                .orElseThrow(() -> new IllegalStateException("file does not exists"));
+    }
+
     public byte[] downloadUserProfileImage(UUID userProfileId) {
         UserProfile user = getUserProfileOrThrow(userProfileId);
         String path = String.format("%s/%s",

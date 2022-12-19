@@ -38,8 +38,14 @@ public class FileStore {
         }catch (AmazonServiceException e){
             throw new IllegalStateException("Failed to store file to s3",e);
         }
+
+
     }
 
+    public String getImgUrl(String path, String fileName){
+        return s3.getUrl(path,fileName).toString();
+
+    }
 
     public byte[] download(String path, String key) {
         try{
