@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 import { useDropzone } from 'react-dropzone';
+import NewUserProfile from './routes/NewUserProfile';
 
 const UserProfiles = () => {
   const [userProfiles, setUserProfiles] = useState([]);
@@ -101,9 +103,15 @@ function Dropzone({ userProfileId }) {
 
 function App() {
   return (
-    <div className='App'>
-      <UserProfiles />
-    </div>
+    // <div className='App'>
+    //   <UserProfiles />
+    // </div>
+    <Router>
+      <Routes>
+        <Route path='/profile' element={<NewUserProfile />} />
+        <Route path='/' element={<UserProfiles />} />
+      </Routes>
+    </Router>
   );
 }
 

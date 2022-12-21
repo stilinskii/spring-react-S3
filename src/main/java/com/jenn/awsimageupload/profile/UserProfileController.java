@@ -1,6 +1,7 @@
 package com.jenn.awsimageupload.profile;
 
 import com.amazonaws.services.elasticfilesystem.model.IncorrectFileSystemLifeCycleStateException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +11,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @CrossOrigin("*")
 @RestController
 @RequestMapping("api/v1/user-profile")
+
 public class UserProfileController {
 
     private final UserProfileService userProfileService;
@@ -47,6 +50,12 @@ public class UserProfileController {
     @GetMapping("{userProfileId}/image/download")
     public String downloadUserProfileImage(@PathVariable("userProfileId") UUID userProfileId){
         return userProfileService.getUserProfileImgUrl(userProfileId);
+    }
+
+    @PostMapping
+    public String addNewUserProfile(){
+        log.info("post request access");
+        return "ok";
     }
 
 

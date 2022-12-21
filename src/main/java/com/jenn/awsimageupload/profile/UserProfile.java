@@ -1,21 +1,30 @@
 package com.jenn.awsimageupload.profile;
 
+import com.amazonaws.services.migrationhubstrategyrecommendations.model.Strategy;
+import jakarta.persistence.*;
+
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
+@Entity
+@Table(name = "userprofile")
 public class UserProfile {
 
-
-    private final UUID userProfileId;
-    private final String username;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private UUID userProfileId;
+    private String username;
     private String userProfileImageLink; // S3 key
 
-    public UserProfile(UUID userProfileId, String username, String userProfileImageLink) {
-        this.userProfileId = userProfileId;
-        this.username = username;
-        this.userProfileImageLink = userProfileImageLink;
-    }
+
+//    public UserProfile(UUID userProfileId, String username, String userProfileImageLink) {
+//        this.userProfileId = userProfileId;
+//        this.username = username;
+//        this.userProfileImageLink = userProfileImageLink;
+//    }
 
     public UUID getUserProfileId() {
         return userProfileId;
